@@ -25,3 +25,5 @@ My leetcode problems log
 ### C) Reverse half Linked List to calculate twin sum AND Delete Middle Node
 - These are based on fast and slow pointers. Concept for slow is that it is our "curr" pointer. Fast increments it self by 2 everytime. So if our slow pointer is at position i, fast pointer is already at 2*i. So, if length of linked list in n, and fast is at n, slow is at the mid-point. This is very helpful. From here, various problems can be solved.
 - For first prob, reverse half the linked list by using 2 pointers namely fast and slow. Then start from head of both, and compare.
+
+### D) Use collections and Counter() in string questions
