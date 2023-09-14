@@ -27,3 +27,6 @@ My leetcode problems log
 - For first prob, reverse half the linked list by using 2 pointers namely fast and slow. Then start from head of both, and compare.
 
 ### D) Use collections and Counter() in string questions
+### E) Stack questions - 
+- Use stack for questions that want you to decode, or modify a string and its neighbours based on a condition.
+- Most stack questions will have a for loop, and a nested while loop(s), but the runtime is 0(n). 
