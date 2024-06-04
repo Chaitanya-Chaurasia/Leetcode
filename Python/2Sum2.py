@@ -5,6 +5,7 @@ class Solution:
         l = 0
         r = len(numbers) - 1
 
+        
         while l < r:
             
             if numbers[l] + numbers[r] == target:
