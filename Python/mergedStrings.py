@@ -37,23 +37,22 @@ Constraints:
 word1 and word2 consist of lowercase English letters.
 
 '''
-
 class Solution:
     def mergeAlternately(self, word1: str, word2: str) -> str:
 
-        mergedString = ""
+        new = ""
+        p = q = 0
 
-        if (len(word1) > len(word2)):
-            self.longerWord = word1
-            self.shorterWord = word2
-        else :
-            self.longerWord = word2
-            self.shorterWord = word1
+        while (p < len(word1) and q < len(word2)):
 
-        for i in range(0, len(self.shorterWord)):
-            mergedString += word1[i] + word2[i]
-        
-        if len(self.shorterWord) !=  len(self.longerWord):
-            mergedString += self.longerWord[len(self.shorterWord):]
-        
-        return mergedString
+            new += word1[p] + word2[q]
+            p += 1
+            q += 1
+
+            if p >= len(word1):
+                return new + word2[q:]
+            
+            if q >= len(word2):
+                return new + word1[p:]
+
+        return "Failed"
