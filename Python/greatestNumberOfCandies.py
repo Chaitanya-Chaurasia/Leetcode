@@ -40,9 +40,16 @@ n == candies.length
 
 class Solution:
     def kidsWithCandies(self, candies: List[int], extraCandies: int) -> List[bool]:
-        self.result = []
 
-        if len(candies) == 0:
-            return 
+        result = []
 
-        return [i + extraCandies >= max(candies) for i in candies]
+        maxCandy = max(candies)
+
+        for i in candies:
+            if i + extraCandies >= maxCandy:
+                result.append(True)
+            else:
+                result.append(False)
+        
+        return result
+        
