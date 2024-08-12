@@ -1,32 +1,30 @@
 class Solution:
     def maxArea(self, height: List[int]) -> int:
         
+        if len(height) == 0:
+            return 0
 
-        # TWO POINTER SOLUTION GREEDY METHOD
+        i = 0
+        j = len(height) - 1
+        area = -1
+        mh = max(height)
 
-        l = 0
-        r = len(height) - 1
+        while j != i:
+            l = min(height[i], height[j])
+            b = j - i 
+            tempArea = l*b
+            area = max(tempArea, area)
 
-        # STORE MAX_AREA IN MOST
-        most = 0
+            # to reduce number of operations, check if max area has been reached. max area will be max(height)*width
+            if area >= mh*b:
+                break
 
-        # WE WILL FIND THE AREA OF CONTAINERS UNTIL THE TWO POINTERS COINCIDE
-        # FIND THE AREA, AND UPDATE MOST
-        # IF RIGHT HEIGHT IS MORE, INCREMENT LEFT POINTER AS GREATER HEIGHT CAN COMPENSATE FOR SMALLER WIDTH
-        # ELSE DECREMENT RIGHT POINTER
+            if height[i] < height[j]:
+                i += 1
+            else:
+                j -= 1
 
-        while l < r:
+        return area
 
-            print(f"Container dimensions : {height[l]} {height[r]}")
-
-            h = min(height[r], height[l])
-            width = r - l
-            area = h * width
-            most = max(area, most)
-
-            if height[r] > height[l]:
-                l += 1
-            else: 
-                r -= 1
-
-        return most
+            
+        
