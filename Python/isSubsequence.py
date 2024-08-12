@@ -1,18 +1,41 @@
 class Solution:
     def isSubsequence(self, s: str, t: str) -> bool:
         
-        if len(s) > len(t):
-            return False
+        # i = j = 0
+
+        # if s == "":
+        #     return True
         
-        if len(s) == 0:
+        # if t == "" and s != "":
+        #     return False
+        
+
+        # while j < len(t):
+        #     if s[i] == t[j]:
+        #         i += 1
+        #     j += 1
+
+        #     if (i == len(s)):
+        #         return True
+
+        # return False      
+
+    
+        # Method 2
+
+        if s == "":
             return True
         
-        subseq = 0
-        for i in range(0, len(t)):
-            if subseq <= len(s) - 1 and s[subseq] == t[i]:
-                subseq += 1
+        if t == "":
+            return False
+        
+        j = 0
 
+        for i in range(len(t)):
+            if j < len(s) and s[j] == t[i]:
+                j += 1 
+           
         
-        return subseq == len(s)
+        return j == len(s)
         
-                
+        
