@@ -1,21 +1,27 @@
 class Solution:
     def maxOperations(self, nums: List[int], k: int) -> int:
+        
+        # SORT THE LIST
+        # START BY FINDING INDEX >= k
+        # NOW USE TWO POINTERS AND CHECK SUM. IF SUM EXISTS, MOVE POINTERS AND INCREMENT ops.
+        # IF SUM IS GREATER, DECREMENT, ELSE INCREMENT.
 
-        nums.sort() 
         ops = 0
-        l,r = 0, len(nums) - 1
+        i = 0
+        j = len(nums) - 1
 
-        while l < r:
-            sum = nums[l] + nums[r]
+        nums.sort()
 
-            if sum == k:
+        while (i < j):
+            if nums[i] + nums[j] == k:
                 ops += 1
-                l += 1
-                r -= 1
-
-            elif sum < k:
-                l = bisect.bisect_left(nums, k - nums[r], lo = l + 1, hi = r )
+                i += 1
+                j -= 1
+            
+            elif nums[i] + nums[j] > k:
+                j -= 1
+            
             else:
-                r = bisect.bisect_right(nums, k - nums[l], lo = l, hi = r ) - 1
+                i += 1
 
         return ops
