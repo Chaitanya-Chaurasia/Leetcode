@@ -1,24 +1,32 @@
 class Solution:
     def compress(self, chars: List[str]) -> int:
 
-        self.s = ""
+        # iterate and check where a new group of characters start.
+        # store the index, and just add the count in a new array.
+        # modify existing list into a new list.
 
-        for i in chars:
-            if chars.count(i) == 1 and i not in self.s:
-                self.s += (i + "#" + str(chars.count(i)) + "#")
+        i = 0
+        write_index = 0
 
-                if chars.count(i) > 1 and i not in self.s:
-                        if (chars.count(i) >= 10):
-                            self.s += (i + "#" + str(chars.count(i))[0] + "#" + str(chars.count(i))[1] + "#")
-                        else:
-                            self.s += (i + "#" + str(chars.count(i)) + "#")
+        while (i < len(chars)):
+            
+            current_char = chars[i]
+            # get the count of current character in chars array
+            count = 0
 
+            while (i < len(chars) and chars[i] == current_char):
+                i += 1
+                count += 1
+            
+            # now, calculate the write_index. 
+            chars[write_index] = current_char
+            write_index += 1
+
+            # if count is more than 1 digit, parse through the number as a string and add it at write_index
+            if count > 1:
+                for j in str(count):
+                    chars[write_index] = j
+                    write_index += 1
+
+        return write_index
         
-
-        chars = (self.s).split("#")
-        del chars[-1]
-
-        print(chars)
-        return len(chars)
-                
-
