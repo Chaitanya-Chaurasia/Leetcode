@@ -10,27 +10,45 @@ class Solution:
         # res[k] is simply the product of res[k] and right product.
         # This is because res[n] and res[k] have already been updated according to the opp. products.
 
-        n = 1
-        k = len(nums) - 2
-        leftProduct = rightProduct = 1
-        res = [1]* len(nums)
+        # n = 1
+        # k = len(nums) - 2
+        # leftProduct = rightProduct = 1
+        # res = [1]* len(nums)
 
-        while (n < len(nums)):
+        # while (n < len(nums)):
 
-            leftProduct *= nums[n - 1]
-            rightProduct *= nums[k + 1]
+        #     leftProduct *= nums[n - 1]
+        #     rightProduct *= nums[k + 1]
 
-            if n < k:
-                res[n] = leftProduct
-                res[k] = rightProduct
-            else:
-                if n == k:
-                    res[n] = leftProduct * rightProduct
-                else:
-                    res[n] *= leftProduct
-                    res[k] *= rightProduct
+        #     if n < k:
+        #         res[n] = leftProduct
+        #         res[k] = rightProduct
+        #     else:
+        #         if n == k:
+        #             res[n] = leftProduct * rightProduct
+        #         else:
+        #             res[n] *= leftProduct
+        #             res[k] *= rightProduct
 
-            n += 1
-            k -= 1
+        #     n += 1
+        #     k -= 1
+
+        # return res
+
+        # SOLUTION 2
+        
+        res = [1]*len(nums)
+        prefix = postfix = 1
+
+        for i in range(len(nums)):
+            res[i] = prefix
+            prefix *= nums[i]
+        
+        for i in range(len(nums) - 1, -1, -1):
+            res[i] *= postfix
+            postfix *= nums[i]
 
         return res
+
+
+        
