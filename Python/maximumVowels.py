@@ -1,23 +1,23 @@
 class Solution:
     def maxVowels(self, s: str, k: int) -> int:
 
+        # just like maxAvg problem
+
+        current_count = 0
         
-        vowels = set(['a', 'e', 'i', 'o', 'u'])
-
-        l, vowelCount, maxCount = 0, 0, 0
-
-
-        for r in range(0, len(s)):
+        for i in range(k):
+            if s[i] in "aeiou":
+                current_count += 1
             
-            if r + 1 - l > k :
-                if s[l] in vowels:
-                    vowelCount -= 1
-                l += 1
+        max_count = current_count
 
-            if s[r] in vowels:
-                vowelCount += 1
-                maxCount = max(maxCount, vowelCount)
-
-        return maxCount 
-
-        return v
+        for i in range(k, len(s)):
+            print(i, k)
+            if s[i - k] in "aeiou":
+                current_count -= 1
+            if s[i] in "aeiou":
+                current_count += 1
+            if current_count > max_count:
+                max_count = current_count
+        
+        return max_count
