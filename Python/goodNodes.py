@@ -7,21 +7,17 @@
 class Solution:
     def goodNodes(self, root: TreeNode) -> int:
 
-        l = [0]
+        if not root:
+            return 0
 
-        def check(root, y):
-            if root:
-                x = max(root.val, y)
+        return self.countGoodNodes(root, root.val)
 
-                if x <= root.val:
-                    l[0] += 1
-                
-                if root.left:
-                    check(root.left, x)
-                if root.right:
-                    check(root.right, x)
+    def countGoodNodes(self, root: Optional[TreeNode], parentNodeVal: int) -> int:
 
-        check(root, -maxsize)
-        return l[0]
-
+        if root:
+            goodNodes = self.countGoodNodes(root.left, max(parentNodeVal, root.val)) + self.countGoodNodes(root.right, max(parentNodeVal, root.val))
+            if root.val >= parentNodeVal:
+                goodNodes += 1
+            return goodNodes
         
+        return 0
