@@ -10,14 +10,14 @@ class Solution:
         # delete all even positions at first pointer and add all even positions on second ptr.
         # odd.next = even
 
-        if not head.next or not head:
-            return None
+        if head == None or head.next == None: 
+            return head
 
         odd = head
         even = head.next
         odd_to_even = even
 
-        while even and even.next:
+        while even != None and even.next != None:
             odd.next = odd.next.next
             even.next = even.next.next
             odd = odd.next
