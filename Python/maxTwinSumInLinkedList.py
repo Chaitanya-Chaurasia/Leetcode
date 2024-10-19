@@ -6,29 +6,25 @@
 class Solution:
     def pairSum(self, head: Optional[ListNode]) -> int:
 
+        # use slow and fast pointers to find midpoint.
+        # then reverse the second half of the list
+        # now, use 2 pointer method to calculate max sum
 
-        prev = None
-        nex = None
-        slow = head
-        fast = head
-        maxSum = 0
-
+        slow, fast = head, head
         while fast and fast.next:
-            fast = fast.next.next
-            nex = slow.next
-            slow.next = prev
-            prev = slow
-            slow = nex
-
-        while slow and prev:
-            if maxSum == None or slow.val + prev.val > maxSum:
-                maxSum = max(slow.val + prev.val, maxSum)
-
             slow = slow.next
-            prev = prev.next
+            fast = fast.next.next
         
-        return maxSum
-
-
-
+        prev, curr = None, slow
+        while curr:
+            temp = curr.next
+            curr.next = prev
+            prev = curr
+            curr = temp
         
+        max_sum = 0
+        while prev:
+            max_sum = max(max_sum, head.val + prev.val)
+            head, prev = head.next, prev.next
+        
+        return max_sum
