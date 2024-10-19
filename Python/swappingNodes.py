@@ -10,26 +10,48 @@ class Solution:
         # iterate to kth element from back
         # swap values
 
-        if head is None:
-            return None
+        # if head is None:
+        #     return None
 
-        if head.next is None and k == 1:
-            return head
+        # if head.next is None and k == 1:
+        #     return head
 
-        first = head
-        pos = 0
-        while pos != k - 1:
-            first = first.next
-            pos += 1
+        # first = head
+        # pos = 0
+        # while pos != k - 1:
+        #     first = first.next
+        #     pos += 1
 
-        slow, fast = head, head
+        # slow, fast = head, head
 
-        for _ in range(k):
-            fast = fast.next
+        # for _ in range(k):
+        #     fast = fast.next
         
-        while fast is not None:
-            slow = slow.next
-            fast = fast.next
+        # while fast is not None:
+        #     slow = slow.next
+        #     fast = fast.next
+        
+        # first.val, slow.val = slow.val, first.val
+
+        # return head
+
+        # single pass 
+
+        slow, fast, first = head, head, head
+        index = 1
+
+        while fast:
+            if index < k:
+                fast = fast.next
+            elif index == k:
+                first = fast
+            elif fast.next:
+                fast = fast.next
+                slow = slow.next
+            else:
+                fast = fast.next
+
+            index += 1
         
         first.val, slow.val = slow.val, first.val
 
