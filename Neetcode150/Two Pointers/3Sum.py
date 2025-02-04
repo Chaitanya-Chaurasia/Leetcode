@@ -63,7 +63,7 @@ class Solution:
         for i in range(len(pos)):
             for j in range(i + 1, len(pos)):
                 if -(pos[i] + pos[j]) in neg:
-                    res.add(tuple(sorted([pos[i], pos[j],-(pos[i] + pos[j])])))
+                    res.add(tuple(sorted([pos[i],pos[j],-(pos[i] + pos[j])])))
 
         for i in range(len(neg)):
             for j in range(i + 1, len(neg)):
