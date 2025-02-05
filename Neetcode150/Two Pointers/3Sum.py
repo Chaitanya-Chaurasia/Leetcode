@@ -5,7 +5,7 @@ class Solution:
         # fix one element, and use two pointer solution over the rest of the array
         # also, for every fixed element, there can be duplicates which we need to account for.
         # since the list is sorted, we can simply modify pointers to reduce or increase sum depending on what the sum of
-        # previous 2 elements are.
+        # previous 2 elements are
 
         res = []
         nums.sort()
