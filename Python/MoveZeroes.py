@@ -20,12 +20,3 @@ class Solution:
                 left += 1
         
         return nums
-
-        return nums
-
-
-
-
-
-        
-        
