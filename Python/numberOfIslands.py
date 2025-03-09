@@ -42,4 +42,41 @@ class Solution:
 
         return islands
 
+
+# DFS APPROACH
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        
+        # Our approach is DFS
+        # We start a DFS in all directions.
+        # When all the DFS runs finish i.e grid[i][j] == 0, we have found one island group
+        # We update the islands and also mark them as visited.
+
+        rows, cols = len(grid), len(grid[0])
+        noOfIslands = 0
+
+        def dfs(x, y):
+            # BASE CASE: If x, y out of bounds or = 0, return False
+            # Start DFS in all 4 directions
+            # Increment islands if all four variables are False
+
+            if x < 0 or x >= rows or y < 0 or y >= cols or grid[x][y] == "0":
+                return
+            
+            # Mark as visited
+            grid[x][y] = "0"
+
+            dfs(x, y - 1)
+            dfs(x, y + 1)
+            dfs(x - 1, y)
+            dfs(x + 1, y)
+
+        for i in range(rows):
+            for j in range(cols):
+                if grid[i][j] == "1":
+                    dfs(i, j)
+                    noOfIslands += 1
+
+        return noOfIslands
+
         
