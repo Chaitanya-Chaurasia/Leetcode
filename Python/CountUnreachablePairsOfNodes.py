@@ -1,6 +1,38 @@
 class Solution:
     def countPairs(self, n: int, edges: List[List[int]]) -> int:
 
+        # First approach: DFS
+        # To use DFS, we will first need to construct a graph.
+        # Let us make an adjacency list.
+        # We will also have a list that stores the size of every component.
+        # Lastly, we will use our math trick to calculate the result
+
+        graph = {}
+        components = []
+        visited = [False for _ in range(n)]
+        res = n*(n - 1) // 2
+
+        def dfs(i):
+            if visited[i]:
+                return 0
+            size = 1
+            visited[i] = True
+            for neighbours in graph[i]:
+                size += dfs(neighbours)
+            return size
+
+        for i in range(n):
+            graph[i] = []
+        for u, v in edges:
+            graph[u].append(v)
+            graph[v].append(u)
+        for i in range(n):
+            if not visited[i]:
+                components.append(dfs(i))
+        for i in components:
+            res -= i*(i - 1) // 2
+        return res
+
         # Our approach: Find connected components
         # Use union-find algorithm to find connected components. 
         # Iterate over edges, and do a union for two vertices
@@ -50,3 +82,4 @@ class UnionFind:
             else:
                 self.parent[rootU] = rootV
                 self.sizeOfComponent[rootV] += 1
+
