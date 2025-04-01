@@ -2,8 +2,8 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
         # TRICK: Difference b/w combinations and permutations.
-        # For permutation, order doesn't matter i.e any element can be picked.
-        # For combination, order matters and we have to pick elements in order. 
+        # For combination, order doesn't matter i.e any element can be picked.
+        # For permuatation, order matters and we have to pick elements in order. 
         # For this question, we need to keep track of built permutation as well as remaining elements
         # we can use to build a permutation
 
