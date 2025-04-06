@@ -15,8 +15,8 @@ class Solution:
         
         prices[-1] = 0
 
-        for i in range(1, n):
+        for i in range(0, n):
             subarraySum = max(subarraySum + prices[i], prices[i])
             profit = max(subarraySum, profit)
-        
+
         return profit
